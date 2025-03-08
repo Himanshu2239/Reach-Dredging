@@ -90,7 +90,7 @@ const BlockWiseReport = () => {
       try {
         const response = await axios.post("http://localhost:5000/common/getProductionDataBlockWise"); // Replace with actual API URL
         const productionData = response.data.data;
-        console.log("ProductionData", productionData)
+        // console.log("ProductionData", productionData)
         // Update executedQty based on API response
         const updatedData = blockData.map((item) => {
           const matchingBlock = productionData.find(

@@ -532,8 +532,8 @@ export default function page() {
       }
 
       const data = await response.json();
-      console.log("data", data);
-      console.log("OilOB", data.data.oilOB);
+      // console.log("data", data);
+      // console.log("OilOB", data.data.oilOB);
       if (data && data.data.oilOB) {
         setOilData((prevOilData) =>
           prevOilData.map((oil) => {

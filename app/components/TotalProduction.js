@@ -138,7 +138,7 @@ export default function TotalProductionReport() {
         await axios.post('http://localhost:5000/common/getDredgerTotalProduction')
             .then((data) => {
                 if (data.data.success) {
-                    console.log("Fetched Data:", data.data);
+                    // console.log("Fetched Data:", data.data);
     
                     // Convert API response to array format
                     let ProductionData = Object.entries(data.data.totalProduction || {})
