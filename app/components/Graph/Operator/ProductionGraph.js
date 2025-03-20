@@ -11,7 +11,7 @@ const OperatorProductionGraph = ({ date, startDate, endDate, dredger }) => {
             try {
                 const response = await axios.post("http://localhost:5001/common/getDateWiseOperatorProductionData", { date, startDate, endDate, dredger },
                 );
-
+        
                 const data = response.data;
                 // const formattedData = data.map((item) => ({
                 //   date: item.date,
@@ -24,7 +24,9 @@ const OperatorProductionGraph = ({ date, startDate, endDate, dredger }) => {
             }
         };
 
-        fetchData();
+
+        if(date || (startDate && endDate) || dredger)
+         fetchData();
     }, [date, startDate, endDate, dredger]);
 
     return (

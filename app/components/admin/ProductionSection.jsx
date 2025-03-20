@@ -17,12 +17,12 @@ export default function ProductionSection({
           <FaIndustry size={48} className="text-blue-600" />
           <h2 className="text-2xl font-semibold text-gray-800">Production</h2>
           <div className="grid grid-cols-2 gap-6 w-full text-center">
-            <div className="bg-blue-100 p-4 rounded-lg shadow-md">
+            <div className="bg-blue-100 md:p-4 p-2 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-blue-700"> Date Production</h3>
-              <p className="text-xl font-bold text-gray-800">
+              <p className="text-[15px] md:text-xl font-bold text-gray-800">
                 {selectedDredger}: {data.surveyProduction} m³
               </p>
-              <p className="text-lg font-medium text-gray-600">
+              <p className="md:text-lg text-[14px] font-medium text-gray-600">
                 Total Hours: {data.surveyProductionPerHour}
               </p>
               <p className="text-sm text-gray-600">
@@ -30,14 +30,14 @@ export default function ProductionSection({
               </p>
             </div>
 
-            <div className="bg-green-100 p-4 rounded-lg shadow-md">
+            <div className="bg-green-100 md:p-4 p-2 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-green-700">
                 {showMonth ? "Monthly" : "Date Range"} Production
               </h3>
-              <p className="text-xl font-bold text-gray-800">
+              <p className="text-[15px] md:text-xl font-bold text-gray-800">
               {selectedDredger}: {monthlyData.surveyProduction} m³
               </p>
-              <p className="text-lg font-medium text-gray-600">
+              <p className="md:text-lg text-[14px] font-medium text-gray-600">
                 Total Hours: {monthlyData.surveyProductionPerHour}
               </p>
               <p className="text-sm text-gray-600">

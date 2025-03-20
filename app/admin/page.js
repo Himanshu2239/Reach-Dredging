@@ -2,10 +2,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
-import DateRangeViewSection from "@/components/admin/DateRangeViewSection";
-import ProductionSection from "@/components/admin/ProductionSection";
-import OilReportSection from "@/components/admin/OilReportSection";
-
+import DateRangeViewSection from "@/app/components/admin/DateRangeViewSection";
+import ProductionSection from "@/app/components/admin/ProductionSection";
+import OilReportSection from "@/app/components/admin/OilReportSection";
+import TotalProductionReport from "../components/TotalProduction";
+import BlockWiseReport from "../components/BlockWiseReport";
+import DykeReportTable from "../components/DykeReportTable";
+import SurveyProductionGraph from "../components/Graph/Survey/ProductionGraph";
+import OperatorProductionGraph from "../components/Graph/Operator/ProductionGraph";
+import OperatorOilComsutionGraph from "../components/Graph/Operator/OilConsumption";
+ 
 const dredgers = ["K7", "K9", "K14", "K15", "All"];
 
 // Helper function to format a Date object to "yyyy-mm-dd"
@@ -79,7 +85,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://127.0.0.1:5001/admin/fetchProductionDetailsForGivenDate",
+          "http://localhost:5001/admin/fetchProductionDetailsForGivenDate",
           payload
         );
         const resData = response.data;
@@ -133,7 +139,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://127.0.0.1:5001/admin/fetchProductionDetailsForGivenRange",
+          "http://localhost:5001/admin/fetchProductionDetailsForGivenRange",
           payload
         );
         const resData = response.data;
@@ -180,7 +186,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://127.0.0.1:5001/admin/serveyOilConsumed",
+          "http://localhost:5001/admin/serveyOilConsumed",
           payload
         );
         const resData = response.data;
@@ -219,7 +225,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://127.0.0.1:5001/admin/surveyOilConsumedForGivenRange",
+          "http://localhost:5001/admin/surveyOilConsumedForGivenRange",
           payload
         );
         const resData = response.data;
@@ -260,23 +266,53 @@ export default function Page() {
           setSelectedView={setSelectedView}
           dredgers={dredgers}
         />
+        <div className="">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Production Section */}
+            <ProductionSection
+              selectedView={selectedView}
+              selectedDredger={selectedDredger}
+              data={data}
+              monthlyData={monthlyData}
+              showMonth={showMonth}
+            />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Production Section */}
-          <ProductionSection
-            selectedView={selectedView}
-            selectedDredger={selectedDredger}
-            data={data}
-            monthlyData={monthlyData}
-            showMonth={showMonth}
-          />
+            {/* Oil Report Section */}
+            <OilReportSection
+              oilConsumption={oilConsumption}
+              showMonth={showMonth}
+              selectedDredger={selectedDredger}
+            />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            {selectedView === 'Survey' ? <SurveyProductionGraph
+              date={date}
+              startDate={startDate}
+              endDate={endDate}
+              dredger={selectedDredger}
+            /> :
+              <OperatorProductionGraph
+                date={date}
+                startDate={startDate}
+                endDate={endDate}
+                dredger={selectedDredger}
+              />}
+            <OperatorOilComsutionGraph
+              date={date}
+              startDate={startDate}
+              endDate={endDate}
+              dredger={selectedDredger}
+            />
 
-          {/* Oil Report Section */}
-          <OilReportSection
-            oilConsumption={oilConsumption}
-            showMonth={showMonth}
-            selectedDredger={selectedDredger}
-          />
+            {selectedView === "Survey" ? (<div>
+              <TotalProductionReport />
+              <BlockWiseReport />
+            </div>) : ""}
+            {selectedView === "Survey" && <div>
+              <DykeReportTable />
+            </div>}
+          </div>
         </div>
       </div>
     </div>
@@ -304,15 +340,15 @@ export default function Page() {
   /* <OilConsumptionAnalytics oilAnalyticsData={oilAnalyticsData} /> */
 }
 
-{
-  /* {selectedView === "Survey" && (
-            <>
-              <TotalProductionReport />
-              <BlockWiseReport />
-              <DykeReportTable />
-            </>
-          )} */
-}
+
+// {selectedView === "Survey" && (
+//             <>
+//               <TotalProductionReport />
+//               <BlockWiseReport />
+//               <DykeReportTable />
+//             </>
+//           )}
+
 //       </div>
 //     */
 //    }

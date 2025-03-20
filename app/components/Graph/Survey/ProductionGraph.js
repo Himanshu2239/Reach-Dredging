@@ -20,14 +20,14 @@ const SurveyProductionGraph = ({date, startDate, endDate, dredger}) => {
           production: item.production, // Production value
         }));
 
-        setProductionData(formattedData);
+        setProductionData(formattedData); 
       } catch (error) {
         console.error("Error fetching production data:", error);
       }
     };
  
     fetchData();
-  }, []);
+  }, [date, startDate, endDate, dredger]);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow">
