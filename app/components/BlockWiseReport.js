@@ -1,77 +1,3 @@
-// import React, { useEffect } from "react";
-// import axios from "axios";
-
-// const BlockWiseReport = () => {
-//   const data = [
-//     { block: "BLOCK - A", totalArea: 240972.78, qty: 2125804.464, executedQty: 1409105.2 },
-//     { block: "BLOCK - B", totalArea: 112352.56, qty: 988132.832, executedQty: 335454.4 },
-//     { block: "BLOCK - C", totalArea: 477478.107, qty: 4202957.342, executedQty: 1399834.4 },
-//   ];
-  
-
-//   return (
-//     <div className="bg-gray-100 hidden md:flex w-full">
-//       <div className="w-full mx-auto bg-white p-4 overflow-auto rounded-lg shadow-lg">
-//         <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">
-//           Block Wise Production Report
-//         </h2>
-//         <table className="w-full border-collapse border border-gray-300">
-//           <thead>
-//             <tr className="bg-blue-500 text-white">
-//               <th className="border border-gray-300 p-2">Block Name</th>
-//               <th className="border border-gray-300 p-2">Total Area</th>
-//               <th className="border border-gray-300 p-2">QTY (CUM)</th>
-//               <th className="border border-gray-300 p-2">Executed QTY</th>
-//               <th className="border border-gray-300 p-2">Percentage</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {data.map((item, index) => (
-//               <tr key={index} className="text-center hover:bg-gray-100">
-//                 <td className="border border-gray-300 p-2 font-semibold">
-//                   {item.block}
-//                 </td>
-//                 <td className="border border-gray-300 p-2">{item.totalArea.toLocaleString()}</td>
-//                 <td className="border border-gray-300 p-2">{item.qty.toLocaleString()}</td>
-//                 <td className="border border-gray-300 p-2 font-bold text-blue-600">
-//                   {item.executedQty.toLocaleString()}
-//                 </td>
-//                 <td className="border border-gray-300 p-2 font-bold text-green-600">
-//                   {((item.executedQty / item.qty) * 100).toFixed(2)}%
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//           <tfoot>
-//             <tr className="bg-gray-300 font-semibold text-center">
-//               <td className="border border-gray-300 p-2">Total</td>
-//               <td className="border border-gray-300 p-2">
-//                 {data.reduce((sum, item) => sum + item.totalArea, 0).toLocaleString()}
-//               </td>
-//               <td className="border border-gray-300 p-2">
-//                 {data.reduce((sum, item) => sum + item.qty, 0).toLocaleString()}
-//               </td>
-//               <td className="border border-gray-300 p-2 font-bold text-blue-600">
-//                 {data.reduce((sum, item) => sum + item.executedQty, 0).toLocaleString()}
-//               </td>
-//               <td className="border border-gray-300 p-2 font-bold text-green-600">
-//                 {(
-//                   (data.reduce((sum, item) => sum + item.executedQty, 0) /
-//                     data.reduce((sum, item) => sum + item.qty, 0)) *
-//                   100
-//                 ).toFixed(2)}%
-//               </td>
-//             </tr>
-//           </tfoot>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BlockWiseReport;
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -88,7 +14,7 @@ const BlockWiseReport = () => {
   useEffect(() => {
     const fetchProductionData = async () => {
       try {
-        const response = await axios.post("http://localhost:5000/common/getProductionDataBlockWise"); // Replace with actual API URL
+        const response = await axios.post("http://localhost:5001/common/getProductionDataBlockWise"); // Replace with actual API URL
         const productionData = response.data.data;
         // console.log("ProductionData", productionData)
         // Update executedQty based on API response

@@ -236,7 +236,7 @@
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:5000/operator/addWorkLog', {
+//       const response = await fetch('http://localhost:5001/operator/addWorkLog', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -496,7 +496,7 @@ export default function page() {
   // const fetchdata = async() => {
   //   console.log("data", date, shift, dredger)
   //   try{
-  //     const res = await axios.post("http://localhost:5000/operator/getOpeningBalace")
+  //     const res = await axios.post("http://localhost:5001/operator/getOpeningBalace")
   //     console.log("res", res);
   //   }
   //   catch(error){
@@ -513,8 +513,8 @@ export default function page() {
       return;
     }
     try {
-      // http://localhost:5000/operator/getOpeningBalace
-      const response = await fetch("http://localhost:5000/operator/getOpeningBalace", {
+      // http://localhost:5001/operator/getOpeningBalace
+      const response = await fetch("http://localhost:5001/operator/getOpeningBalace", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -648,7 +648,7 @@ export default function page() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/operator/addOperatorReport", {
+      const response = await fetch("http://localhost:5001/operator/addOperatorReport", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

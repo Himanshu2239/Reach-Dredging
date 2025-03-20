@@ -1,106 +1,3 @@
-
-// 'use client'
-// import { useEffect, useState } from "react";
-// import Header from "../components/Header";
-// import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import { useRouter } from "next/navigation";
-
-
-
-// export default function SurveyReportTable() {
-//   const [surveyData, setSurveyData] = useState([]);
-//   const [loading, setLoading] = useState(true); // Added loading state
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     // Fetch survey data using POST method
-//     const fetchSurveyData = async () => {
-//       const token = localStorage.getItem("accessToken")
-
-//       if(!token){
-//            toast.error('Authorization failed')
-//            router.push('/login')
-//            return;
-//          }
-//       try {
-//         const response = await fetch('http://localhost:5000/survey/getSurveyData', {
-//           method: 'POST', // Use POST method
-//           headers: {
-//             'Content-Type': 'application/json',
-//             "Authorization": `Bearer ${token}`
-//           },
-//           body: JSON.stringify({ /* Optional: Add data to send to the server */ }),
-//         });
-
-//         const data = await response.json();
-//         setSurveyData(data);
-//       } catch (error) {
-//         console.error("Error fetching survey data:", error);
-//       } finally {
-//         setLoading(false); // Set loading to false after data is fetched
-//       }
-//     };
-
-//     fetchSurveyData();
-//   }, []);
-
-//   return (
-//     <div className="overflow-x-auto rounded-lg">
-//       {loading ? (
-//        <div className="flex justify-center items-center py-10">
-//        <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-blue-500"></div>
-//      </div>
-//       ) : (
-//         <div>
-//           <Header/>
-//           <div className="pt-[6rem]">
-//            <div className="font-bold text-2xl mb-4 ml-4">Survey Table</div>
-//           <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
-//           <thead className="bg-gray-100 text-gray-600">
-//             <tr>
-//               <th className="px-4 py-2 border-b">Date</th>
-//               <th className="px-4 py-2 border-b">Dredger</th>
-//               <th className="px-4 py-2 border-b">Shift</th>
-//               <th className="px-4 py-2 border-b">Forward</th>
-//               <th className="px-4 py-2 border-b">Width</th>
-//               <th className="px-4 py-2 border-b">Depth</th>
-//               <th className="px-4 py-2 border-b">Dyke</th>
-//               <th className="px-4 py-2 border-b">Block</th>
-//               <th className="px-4 py-2 border-b">Production</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {surveyData.length === 0 ? (
-//               <tr>
-//                 <td colSpan="9" className="text-center py-4">No Data Available</td>
-//               </tr>
-//             ) : (
-//               surveyData.map((survey) => (
-//                 <tr className="text-center" key={survey._id}>
-//                   <td className="px-4 py-2 border-b">{survey.date}</td>
-//                   <td className="px-4 py-2 border-b">{survey.dredger}</td>
-//                   <td className="px-4 py-2 border-b">{survey.shift}</td>
-//                   <td className="px-4 py-2 border-b">{survey.forward}</td>
-//                   <td className="px-4 py-2 border-b">{survey.width}</td>
-//                   <td className="px-4 py-2 border-b">{survey.depth}</td>
-//                   <td className="px-4 py-2 border-b">{survey.dyke}</td>
-//                   <td className="px-4 py-2 border-b">{survey.block}</td>
-//                   <td className="px-4 py-2 border-b">{survey.production}</td>
-//                 </tr>
-//               ))
-//             )}
-//           </tbody>
-//           </table>
-//           </div>
-//         </div>
-//       )}
-//       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-//     </div>
-//   );
-// }
-
-
 'use client';
 
 import { useEffect, useState } from "react";
@@ -154,7 +51,7 @@ export default function SurveyReportTable() {
 
     const fetchSurveyData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/survey/getSurveyData", {
+        const response = await fetch("http://localhost:5001/survey/getSurveyData", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

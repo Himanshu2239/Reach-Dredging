@@ -9,7 +9,7 @@ const SurveyProductionGraph = ({date, startDate, endDate, dredger}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/common/getDateWiseSurveyProductionData', {date, startDate, endDate, dredger})
+        const response = await axios.post('http://localhost:5001/common/getDateWiseSurveyProductionData', {date, startDate, endDate, dredger})
         console.log("respose", response)
         
         // const data = await response.json();

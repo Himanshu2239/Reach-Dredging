@@ -300,7 +300,7 @@ const OilReportForm = () => {
 
   useEffect(() => {
     if (date && shift) {
-      fetch(`http://localhost:5000/operator/getOilReportByDate?date=${date}&shift=${shift}`)
+      fetch(`http://localhost:5001/operator/getOilReportByDate?date=${date}&shift=${shift}`)
         .then((response) => response.json())
         .then((responseData) => {
           setData(responseData);
@@ -333,7 +333,7 @@ const OilReportForm = () => {
       data,
     };
 
-    fetch("http://localhost:5000/operator/addOilReport", {
+    fetch("http://localhost:5001/operator/addOilReport", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestBody),
