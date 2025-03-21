@@ -9,7 +9,7 @@ const OperatorProductionGraph = ({ date, startDate, endDate, dredger }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:5001/common/getDateWiseOperatorProductionData", { date, startDate, endDate, dredger },
+                const response = await axios.post("https://reach-backend.vercel.app/common/getDateWiseOperatorProductionData", { date, startDate, endDate, dredger },
                 );
         
                 const data = response.data;

@@ -28,7 +28,7 @@ const DykeReportTable = () => {
   useEffect(() => {
     const fetchProductionData = async () => {
       try {
-        const response = await axios.post("http://localhost:5001/common/getProductionDataDykewise");
+        const response = await axios.post("https://reach-backend.vercel.app/common/getProductionDataDykewise");
         const productionData = response.data.data;
 
         const updatedData = dykeData.map((dyke) => {

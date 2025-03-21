@@ -58,7 +58,7 @@ const SurveyWorkLogReport = () => {
 
     try {
       // Submit data to backend
-      const response = await fetch("http://localhost:5001/survey/addSurveyData", {
+      const response = await fetch("https://reach-backend.vercel.app/survey/addSurveyData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

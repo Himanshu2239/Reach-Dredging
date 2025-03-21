@@ -14,7 +14,7 @@ const BlockWiseReport = () => {
   useEffect(() => {
     const fetchProductionData = async () => {
       try {
-        const response = await axios.post("http://localhost:5001/common/getProductionDataBlockWise"); // Replace with actual API URL
+        const response = await axios.post("https://reach-backend.vercel.app/common/getProductionDataBlockWise"); // Replace with actual API URL
         const productionData = response.data.data;
         // console.log("ProductionData", productionData)
         // Update executedQty based on API response

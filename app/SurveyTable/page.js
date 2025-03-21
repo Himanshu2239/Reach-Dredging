@@ -51,7 +51,7 @@ export default function SurveyReportTable() {
 
     const fetchSurveyData = async () => {
       try {
-        const response = await fetch("http://localhost:5001/survey/getSurveyData", {
+        const response = await fetch("https://reach-backend.vercel.app/survey/getSurveyData", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

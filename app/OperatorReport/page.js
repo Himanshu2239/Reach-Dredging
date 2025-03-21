@@ -19,7 +19,7 @@ const page = () => {
     const fetchReports = async () => {
       try {
         setLoading(true);  // Show loading state
-        const response = await fetch("http://localhost:5001/operator/getOperatorReport", {
+        const response = await fetch("https://reach-backend.vercel.app/operator/getOperatorReport", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

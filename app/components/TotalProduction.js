@@ -24,7 +24,7 @@ export default function TotalProductionReport() {
     ];
 
     const fetchData = async () => {
-        await axios.post('http://localhost:5001/common/getDredgerTotalProduction')
+        await axios.post('https://reach-backend.vercel.app/common/getDredgerTotalProduction')
             .then((data) => {
                 if (data.data.success) {
                     // console.log("Fetched Data:", data.data);

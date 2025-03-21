@@ -8,7 +8,7 @@ function OperatorOilComsutionGraph({date, startDate, endDate, dredger}) {
 
   useEffect(() => {
    const fetchData = async() => {
-    const response = await axios.post('http://localhost:5001/common/getDateWiseOperatorOilConsumption', {date, startDate, endDate, dredger})
+    const response = await axios.post('https://reach-backend.vercel.app/common/getDateWiseOperatorOilConsumption', {date, startDate, endDate, dredger})
     console.log("Oil Graph Response", response.data);
     setOilConsumtionData(response.data);
    }

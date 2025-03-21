@@ -98,7 +98,7 @@ const SurveyOilReport = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/survey/addSurveyOilReport", {
+      const response = await fetch("https://reach-backend.vercel.app/survey/addSurveyOilReport", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

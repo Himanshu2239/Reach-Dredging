@@ -85,7 +85,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://localhost:5001/admin/fetchProductionDetailsForGivenDate",
+          "https://reach-backend.vercel.app/admin/fetchProductionDetailsForGivenDate",
           payload
         );
         const resData = response.data;
@@ -139,7 +139,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://localhost:5001/admin/fetchProductionDetailsForGivenRange",
+          "https://reach-backend.vercel.app/admin/fetchProductionDetailsForGivenRange",
           payload
         );
         const resData = response.data;
@@ -186,7 +186,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://localhost:5001/admin/serveyOilConsumed",
+          "https://reach-backend.vercel.app/admin/serveyOilConsumed",
           payload
         );
         const resData = response.data;
@@ -225,7 +225,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "http://localhost:5001/admin/surveyOilConsumedForGivenRange",
+          "https://reach-backend.vercel.app/admin/surveyOilConsumedForGivenRange",
           payload
         );
         const resData = response.data;

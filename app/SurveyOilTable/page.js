@@ -63,7 +63,7 @@ const checkAuth = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:5001/survey/getSurveyOilReport",
+          "https://reach-backend.vercel.app/survey/getSurveyOilReport",
           { dredger: selectedDredger },
           { headers: { Authorization: `Bearer ${token}` } }
         );
