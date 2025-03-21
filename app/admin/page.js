@@ -123,7 +123,7 @@ export default function Page() {
         console.error("Error fetching production details:", error);
       }
     };
-
+  //test
     fetchProductionData();
   }, [selectedDredger, selectedView, date]);
 
