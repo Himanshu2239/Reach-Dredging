@@ -182,7 +182,7 @@ export default function Page() {
         const payload = {
           dredger: selectedDredger,
           date: date, // Use the production API's date or user-selected date.
-          view: "Operator", // Always use "Operator" for oil consumption endpoints.
+          view: selectedView, // Always use "Operator" for oil consumption endpoints.
         };
 
         const response = await axios.post(
@@ -221,7 +221,7 @@ export default function Page() {
           dredger: selectedDredger,
           startDate: startDate,
           endDate: endDate,
-          view: "Operator", // Always use "Operator" for oil consumption endpoints.
+          view: selectedView, // Always use "Operator" for oil consumption endpoints.
         };
 
         const response = await axios.post(
