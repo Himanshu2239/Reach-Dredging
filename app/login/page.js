@@ -65,7 +65,16 @@ export default function LoginForm() {
           };
 
           localStorage.setItem("userDetails", JSON.stringify(userDetails));
-          router.push('/admin');
+         // Role based navigation
+          if (userRole === "Survey") {
+            router.push("/survey");
+          } else if (userRole === "Operator") {
+            router.push("/Operator");
+          } else if (userRole === "admin") {
+            router.push("/admin");
+          } else {
+            router.push("/login");
+          }
         }
       }
       
