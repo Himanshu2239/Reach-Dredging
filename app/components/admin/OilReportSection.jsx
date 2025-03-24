@@ -15,11 +15,6 @@ export default function OilReportSection({ oilConsumption, showMonth ,selectedDr
           <p className="text-xl font-bold text-gray-800">
             HSD {selectedDredger}: {oilConsumption.dateCumulative} L
           </p>
-          {oilConsumption.message && (
-            <p className="text-xs text-red-600">
-              {oilConsumption.message}
-            </p>
-          )}
         </div>
 
         {/* Monthly Oil Consumption */}
