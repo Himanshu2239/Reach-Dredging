@@ -186,7 +186,7 @@ export default function Page() {
         };
 
         const response = await axios.post(
-          "https://reach-backend.vercel.app/admin/serveyOilConsumed",
+          "https://reach-backend.vercel.app/admin/serveyOilConsumedForGivenDate",
           payload
         );
         const resData = response.data;
@@ -229,6 +229,8 @@ export default function Page() {
           payload
         );
         const resData = response.data;
+
+       console.log("response of /surveyOilConsumedForGinvenRange",response.data);
 
         setOilConsumption((prev) => ({
           ...prev,
