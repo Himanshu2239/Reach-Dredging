@@ -66,7 +66,7 @@ const DykeReportTable = () => {
                 <th className="border p-3">Area (Acre)</th>
                 <th className="border p-3">Total Capacity (CUM)</th>
                 <th className="border p-3">Fill Up</th>
-                <th className="border p-3">Balance</th>
+                <th className="border p-3">Fill Up (%)</th>
               </tr>
             </thead>
             <tbody>
