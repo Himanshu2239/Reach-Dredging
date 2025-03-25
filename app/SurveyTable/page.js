@@ -11,6 +11,12 @@ export default function SurveyReportTable() {
   const [surveyData, setSurveyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+
+  const reverseDate = (str) => {
+    const arr = str.split('-');
+    return arr.reverse().join('-');
+ }
   
   const checkAuth = () => {
     if (typeof window !== "undefined") {
@@ -61,6 +67,7 @@ export default function SurveyReportTable() {
         });
 
         const data = await response.json();
+        data.sort((a,b) => (new Date(a.date) - new Date(b.date)));
         setSurveyData(data);
       } catch (error) {
         console.error("Error fetching survey data:", error);
@@ -88,7 +95,7 @@ export default function SurveyReportTable() {
           <p className="text-center text-red-500 font-semibold">No survey data available.</p>
         ) : (
           <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4">
-            <table className="w-full border border-gray-200 text-sm text-gray-700">
+            <table className="w-full border border-gray-200 whitespace-nowrap text-sm text-gray-700">
               <thead className="bg-blue-500 text-white text-sm uppercase">
                 <tr>
                   <th className="px-4 py-2 border-b">Date</th>
@@ -105,7 +112,7 @@ export default function SurveyReportTable() {
               <tbody>
                 {surveyData.map((survey) => (
                   <tr className="odd:bg-gray-50 text-center" key={survey._id}>
-                    <td className="px-4 py-2 border-b">{survey.date}</td>
+                    <td className="px-4 py-2 border-b">{reverseDate(survey.date)}</td>
                     <td className="px-4 py-2 border-b">{survey.dredger}</td>
                     <td className="px-4 py-2 border-b">{survey.shift}</td>
                     <td className="px-4 py-2 border-b">{survey.forward}</td>
