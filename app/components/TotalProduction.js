@@ -120,32 +120,6 @@ export default function TotalProductionReport() {
                             <td className="border px-4 py-2 text-right text-lg">{100 - balancePercentage.toFixed(2)} % </td>
                         </tr>
                     </tfoot>
-                    // <tfoot>
-                    //     <tr className="bg-gray-300 font-bold">
-                    //         <td colSpan="2" className="border px-4 py-2 text-center">Balance Percentage</td>
-                    //         <td className="border px-4 py-2 text-right text-lg">{balancePercentage.toFixed(2)} % </td>
-                    //     </tr>
-                    // </tfoot>
-                    // <tfoot>
-                    //     <tr className="bg-gray-100 font-bold">
-                    //         <td colSpan="2" className="border px-4 py-2 text-center">Till Date Total Qty</td>
-                    //         <td className="border px-4 py-2 text-right text-lg">{totalQty.toLocaleString('en-IN')}</td>
-                    //     </tr>
-                    // </tfoot>
-                    // <tfoot>
-                    //     <tr className="bg-gray-300 font-bold">
-                    //         <td colSpan="2" className="border px-4 py-2 text-center">SOR QTY</td>
-                    //         <td className="border px-4 py-2 text-right text-lg">{sqrQty.toLocaleString('en-IN')}.00</td>
-                    //     </tr>
-                    // </tfoot>
-                  
-                    // <tfoot>
-                    //     <tr className="bg-gray-300 font-bold">
-                    //         <td colSpan="2" className="border px-4 py-2 text-center">Balance QTY</td>
-                    //         <td className="border px-4 py-2 text-right text-lg">{balanceQty.toLocaleString('en-IN')}</td>
-                    //     </tr>
-                    // </tfoot>
-                   
                 </table>
             )}
         </div>
