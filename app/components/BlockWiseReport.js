@@ -3,9 +3,9 @@ import axios from "axios";
 
 const BlockWiseReport = () => {
   const [blockData, setBlockData] = useState([
-    { block: "Block A", totalArea: 240972.78, qty: 2125804.464, executedQty: 1409105.2},
-    { block: "Block B", totalArea: 112352.56, qty: 988132.832, executedQty: 335454.4},
-    { block: "Block C", totalArea: 477478.107, qty: 4202957.342, executedQty: 1399834.4 },
+    { block: "Block A", totalArea: 722918.34, qty: 2120560.464, executedQty: 1624386.2},
+    { block: "Block B", totalArea: 337057.68, qty: 988702.528, executedQty: 410564.4},
+    { block: "Block C", totalArea: 1432434.321, qty: 4201807.342, executedQty: 1708288.6},
   ]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
