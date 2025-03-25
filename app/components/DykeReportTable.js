@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const initialData = [
-  { dykeNo: 1, areaAcre: 15.96, totalCapacity: 161495.00, fillUp: 126385.60 },
-  { dykeNo: 2, areaAcre: 86.57, totalCapacity: 875832.50, fillUp: 836999.40 },
-  { dykeNo: 3, areaAcre: 64.93, totalCapacity: 656952.50, fillUp: 548288.80 },
+  { dykeNo: 1, areaAcre: 15.96, totalCapacity: 161495.00, fillUp: 184571.60  },
+  { dykeNo: 2, areaAcre: 86.57, totalCapacity: 875832.50, fillUp:  927250.70},
+  { dykeNo: 3, areaAcre: 64.93, totalCapacity: 656952.50, fillUp:  548288.80 },
   { dykeNo: 4, areaAcre: 41.48, totalCapacity: 419622.50, fillUp: 353985.60 },
-  { dykeNo: 5, areaAcre: 31.80, totalCapacity: 321722.50, fillUp: 21510.00 },
+  { dykeNo: 5, areaAcre: 31.80, totalCapacity: 321722.50, fillUp:  228244.10  },
   { dykeNo: 6, areaAcre: 8.43, totalCapacity: 85287.50, fillUp: 0 },
   { dykeNo: 7, areaAcre: 49.45, totalCapacity: 500265.00, fillUp: 365592.80 },
-  { dykeNo: 8, areaAcre: 23.78, totalCapacity: 240542.50, fillUp: 184237.70 },
+  { dykeNo: 8, areaAcre: 23.78, totalCapacity: 240542.50, fillUp:  259347.60  },
   { dykeNo: 9, areaAcre: 4.58, totalCapacity: 46307.50, fillUp: 0 },
   { dykeNo: 10, areaAcre: 35.64, totalCapacity: 360562.50, fillUp: 0 },
-  { dykeNo: 11, areaAcre: 15.74, totalCapacity: 159280.00, fillUp: 45116.00 },
+  { dykeNo: 11, areaAcre: 15.74, totalCapacity: 159280.00, fillUp:  261189.70  },
   { dykeNo: 12, areaAcre: 46.97, totalCapacity: 475172.50, fillUp: 625421.90 },
   { dykeNo: 13, areaAcre: 10.57, totalCapacity: 106970.00, fillUp: 0 },
   { dykeNo: 14, areaAcre: 3.58, totalCapacity: 36255.00, fillUp: 36856.20 },
