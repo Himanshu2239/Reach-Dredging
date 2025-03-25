@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 
 export default function TotalProductionReport() {
     const [totalProductionArr, setTotalProductionArr] = useState([
-        { id: 1, dredger: 'K7', qty: 390435.90 },
-        { id: 2, dredger: 'K9', qty: 250988.20 },
-        { id: 3, dredger: 'K14', qty: 1263443.20 },
-        { id: 4, dredger: 'K15', qty: 1284636.70 },
+        { id: 1, dredger: 'K7', qty: 482815.20  },
+        { id: 2, dredger: 'K9', qty: 326098.10  },
+        { id: 3, dredger: 'K14', qty: 1481125.30  },
+        { id: 4, dredger: 'K15', qty: 1500710.40  },
     ]
 );
     const [totalQty, setTotalQty] = useState(0);
@@ -17,10 +17,10 @@ export default function TotalProductionReport() {
     const [balanceQty, setBalanceQty] = useState();
     const [balancePercentage, setBalancePercentage] = useState();
     const indialProductionData = [
-        { id: 1, dredger: 'K7', qty: 390435.90 },
-        { id: 2, dredger: 'K9', qty: 250988.20 },
-        { id: 3, dredger: 'K14', qty: 1263443.20 },
-        { id: 4, dredger: 'K15', qty: 1284636.70 },
+        { id: 1, dredger: 'K7', qty: 482815.20  },
+        { id: 2, dredger: 'K9', qty: 326098.10  },
+        { id: 3, dredger: 'K14', qty: 1481125.30  },
+        { id: 4, dredger: 'K15', qty: 1500710.40  },
     ];
 
     const fetchData = async () => {
