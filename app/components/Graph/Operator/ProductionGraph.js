@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const OperatorProductionGraph = ({ date, startDate, endDate, dredger }) => {
     const [productionData, setProductionData] = useState([]);
-    const targetValue = 1000;
+    const targetValue = 24000;
 
     useEffect(() => {
         const fetchData = async () => {
