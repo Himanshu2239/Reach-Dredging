@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const SurveyProductionGraph = ({date, startDate, endDate, dredger}) => {
   const [productionData, setProductionData] = useState([]);
-  const targetValue = 7;
+  const targetValue = 14000;
 
   useEffect(() => {
     const fetchData = async () => {
