@@ -120,7 +120,7 @@ export default function SurveyReportTable() {
                     <td className="px-4 py-2 border-b">{survey.depth}</td>
                     <td className="px-4 py-2 border-b">{survey.dyke}</td>
                     <td className="px-4 py-2 border-b">{survey.block}</td>
-                    <td className="px-4 py-2 border-b font-bold">{survey.production}</td>
+                    <td className="px-4 py-2 border-b font-bold">{survey.production.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
