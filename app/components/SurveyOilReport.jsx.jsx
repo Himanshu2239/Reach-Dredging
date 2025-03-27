@@ -131,11 +131,83 @@ const SurveyOilReport = () => {
   const totalVolume = tankRows.reduce((acc, row) => acc + row.volume, 0);
 
   return (
-    <div className="flex flex-col items-center max-w-3xl md:w-full  pt-4">
-      <div className="bg-white bg-opacity-90 rounded-lg shadow-lg w-full max-w-3xl p-8">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">Oil Report</h2>
+    // <div className="flex flex-col items-center max-w-3xl md:w-full  pt-4">
+    //   <div className="bg-white bg-opacity-90 rounded-lg shadow-lg w-full max-w-3xl p-8">
+    //     <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">Oil Report</h2>
+    //     <div className="mb-4">
+    //       <label className="block text-gray-700 font-medium mb-2">Report Date</label>
+    //       <input
+    //         type="date"
+    //         value={reportDate}
+    //         onChange={handleDateChange}
+    //         className="w-full border border-gray-300 rounded-lg p-2"
+    //       />
+    //     </div>
+    //     <div className="mb-4">
+    //       <label className="block text-gray-700 font-medium mb-2">Select Dredger</label>
+    //       <select
+    //         value={selectedDredger}
+    //         onChange={handleDredgerChange}
+    //         className="w-full border border-gray-300 rounded-lg p-2"
+    //       >
+    //         {/* <option value="">Select dredger</option> */}
+    //         <option value="K7">K7</option>
+    //         <option value="K9">K9</option>
+    //         <option value="K14">K14</option>
+    //         <option value="K15">K15</option>
+    //       </select>
+    //     </div>
+    //     <table className="min-w-full border border-gray-300 mb-4">
+    //       <thead className="bg-gray-100">
+    //         <tr>
+    //           <th className="px-4 py-2 border">Tank Name</th>
+    //           <th className="px-4 py-2 border">Height (cm)</th>
+    //           <th className="px-4 py-2 border">Liters/cm</th>
+    //           <th className="px-4 py-2 border">Volume (liters)</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {tankRows.map((row) => (
+    //           <tr key={row.tankName}>
+    //             <td className="px-4 py-2 border">{row.tankName}</td>
+    //             <td className="px-4 py-2 border">
+    //               <input
+    //                 type="number"
+    //                 step="any" 
+    //                 value={row.height || ""}
+    //                 onChange={(e) => handleHeightChange(row.tankName, e.target.value)}
+    //                 className="w-24 border border-gray-300 rounded p-1"
+    //               />
+    //             </td>
+    //             <td className="px-4 py-2 border">{row.litersPerCm.toFixed(3)}</td>
+    //             <td className="px-4 py-2 border">{row.volume.toFixed(2)}</td>
+    //           </tr>
+    //         ))}
+    //         <tr className="bg-gray-200 font-bold">
+    //           <td className="px-4 py-2 border" colSpan={3}>Total Volume</td>
+    //           <td className="px-4 py-2 border">{totalVolume.toFixed(2)}</td>
+    //         </tr>
+    //       </tbody>
+    //     </table>
+    //     <div className="flex justify-center mt-4">
+    //       <button
+    //         onClick={handleSubmit}
+    //         className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+    //       >
+    //         Submit
+    //       </button>
+    //     </div>
+    //   </div>
+    //   <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+    // </div>
+
+     <div className="flex flex-col items-center max-w-3xl w-full pt-4">
+      <div className="bg-white bg-opacity-90 rounded-lg shadow-lg w-full p-6 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800 text-center">Oil Report</h2>
+
+        {/* Report Date */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Report Date</label>
+          <label className="block text-gray-700 font-medium mb-1 sm:mb-2">Report Date</label>
           <input
             type="date"
             value={reportDate}
@@ -143,61 +215,70 @@ const SurveyOilReport = () => {
             className="w-full border border-gray-300 rounded-lg p-2"
           />
         </div>
+
+        {/* Dredger Selection */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Select Dredger</label>
+          <label className="block text-gray-700 font-medium mb-1 sm:mb-2">Select Dredger</label>
           <select
             value={selectedDredger}
             onChange={handleDredgerChange}
             className="w-full border border-gray-300 rounded-lg p-2"
           >
-            {/* <option value="">Select dredger</option> */}
             <option value="K7">K7</option>
             <option value="K9">K9</option>
             <option value="K14">K14</option>
             <option value="K15">K15</option>
           </select>
         </div>
-        <table className="min-w-full border border-gray-300 mb-4">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-2 border">Tank Name</th>
-              <th className="px-4 py-2 border">Height (cm)</th>
-              <th className="px-4 py-2 border">Liters/cm</th>
-              <th className="px-4 py-2 border">Volume (liters)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tankRows.map((row) => (
-              <tr key={row.tankName}>
-                <td className="px-4 py-2 border">{row.tankName}</td>
-                <td className="px-4 py-2 border">
-                  <input
-                    type="number"
-                    step="any" 
-                    value={row.height || ""}
-                    onChange={(e) => handleHeightChange(row.tankName, e.target.value)}
-                    className="w-24 border border-gray-300 rounded p-1"
-                  />
-                </td>
-                <td className="px-4 py-2 border">{row.litersPerCm.toFixed(3)}</td>
-                <td className="px-4 py-2 border">{row.volume.toFixed(2)}</td>
+
+        {/* Responsive Table Container */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-gray-300 mb-4">
+            <thead className="bg-gray-100 text-sm sm:text-base">
+              <tr>
+                <th className="px-3 sm:px-4 py-2 border">Tank Name</th>
+                <th className="px-3 sm:px-4 py-2 border">Height (cm)</th>
+                <th className="px-3 sm:px-4 py-2 border">Liters/cm</th>
+                <th className="px-3 sm:px-4 py-2 border">Volume (liters)</th>
               </tr>
-            ))}
-            <tr className="bg-gray-200 font-bold">
-              <td className="px-4 py-2 border" colSpan={3}>Total Volume</td>
-              <td className="px-4 py-2 border">{totalVolume.toFixed(2)}</td>
-            </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tankRows.map((row) => (
+                <tr key={row.tankName}>
+                  <td className="px-3 sm:px-4 py-2 border text-sm sm:text-base">{row.tankName}</td>
+                  <td className="px-3 sm:px-4 py-2 border">
+                    <input
+                      type="number"
+                      step="any"
+                      value={row.height || ""}
+                      onChange={(e) => handleHeightChange(row.tankName, e.target.value)}
+                      className="w-full sm:w-24 border border-gray-300 rounded p-1 text-sm sm:text-base"
+                    />
+                  </td>
+                  <td className="px-3 sm:px-4 py-2 border text-sm sm:text-base">{row.litersPerCm.toFixed(3)}</td>
+                  <td className="px-3 sm:px-4 py-2 border text-sm sm:text-base">{row.volume.toFixed(2)}</td>
+                </tr>
+              ))}
+              <tr className="bg-gray-200 font-bold">
+                <td className="px-3 sm:px-4 py-2 border text-sm sm:text-base" colSpan={3}>Total Volume</td>
+                <td className="px-3 sm:px-4 py-2 border text-sm sm:text-base">{totalVolume.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Submit Button */}
         <div className="flex justify-center mt-4">
           <button
             onClick={handleSubmit}
-            className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+            className="px-4 sm:px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 w-full sm:w-auto"
           >
             Submit
           </button>
         </div>
       </div>
+
+      {/* Toast Notification */}
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
