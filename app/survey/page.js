@@ -92,8 +92,7 @@ const SurveyWorkLogReport = () => {
   //   }
   // };
 
-
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation
@@ -202,7 +201,7 @@ const SurveyWorkLogReport = () => {
         );
        // Stop execution until user makes a choice
        return;
-      }
+      } 
       else {
         toast.success(result.message);
       }
@@ -223,6 +222,7 @@ const SurveyWorkLogReport = () => {
       toast.error("An error occurred while submitting the report.");
     }
   };
+ 
 
   const images = [
     "/image_1.jpeg",
