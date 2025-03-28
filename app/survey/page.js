@@ -531,78 +531,96 @@ const SurveyWorkLogReport = () => {
 
       const result = await checkResponse.json();
 
-      if (!result.success && result.requireConfirmation) {
-        // Show toast confirmation instead of window.confirm
-      const toastId =  toast.info(
-          <div>
-            <p>{result.message}</p>
-            <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
-              <button
-                style={{
-                  padding: "5px 10px",
-                  backgroundColor: "#28a745",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-                onClick={async () => {
-                  // User confirmed, so submit as a new entry
-                  const newEntryResponse = await fetch(
-                    "https://reach-backend.vercel.app/survey/addSurveyData",
-                    {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                      },
-                      body: JSON.stringify({ ...formData, isNewEntry: true }),
-                    }
-                  );
+      // if (!result.success && result.requireConfirmation) {
+      //   // Show toast confirmation instead of window.confirm
+      // const toastId =  toast.info(
+      //     <div>
+      //       <p>{result.message}</p>
+      //       <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+      //         <button
+      //           style={{
+      //             padding: "5px 10px",
+      //             backgroundColor: "#28a745",
+      //             color: "white",
+      //             border: "none",
+      //             borderRadius: "4px",
+      //             cursor: "pointer",
+      //           }}
+      //           onClick={async () => {
+      //             // User confirmed, so submit as a new entry
+      //             const newEntryResponse = await fetch(
+      //               "https://reach-backend.vercel.app/survey/addSurveyData",
+      //               {
+      //                 method: "POST",
+      //                 headers: {
+      //                   "Content-Type": "application/json",
+      //                   Authorization: `Bearer ${token}`,
+      //                 },
+      //                 body: JSON.stringify({ ...formData, isNewEntry: true }),
+      //               }
+      //             );
 
-                  const newEntryResult = await newEntryResponse.json();
-                  toast.dismiss(toastId); // Close the toast
-                  toast.success(newEntryResult.message);
-                  setFormData({
-                    date: "",
-                    dredger: "Select dredger type",
-                    shift: "Select shift",
-                    forward: "",
-                    width: "",
-                    depth: "",
-                    dyke: "Select dyke",
-                    block: "Select block",
-                  });
-                }}
-              >
-                OK
-              </button>
+      //             const newEntryResult = await newEntryResponse.json();
+      //             toast.dismiss(toastId); // Close the toast
+      //             toast.success(newEntryResult.message);
+      //             setFormData({
+      //               date: "",
+      //               dredger: "Select dredger type",
+      //               shift: "Select shift",
+      //               forward: "",
+      //               width: "",
+      //               depth: "",
+      //               dyke: "Select dyke",
+      //               block: "Select block",
+      //             });
+      //           }}
+      //         >
+      //           OK
+      //         </button>
 
-              <button
-                style={{
-                  padding: "5px 10px",
-                  backgroundColor: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-                onClick={() => toast.dismiss(toastId)} // Close the toast when cancel is clicked
-              >
-                Cancel
-              </button>
-            </div>
-          </div>,
-          {
-            position: "top-center",
-            autoClose: false, // Prevents auto-closing
-            closeOnClick: false,
-            closeButton: false,
-          }
-        );
-       // Stop execution until user makes a choice
-       return;
-      } 
+      //         <button
+      //           style={{
+      //             padding: "5px 10px",
+      //             backgroundColor: "#dc3545",
+      //             color: "white",
+      //             border: "none",
+      //             borderRadius: "4px",
+      //             cursor: "pointer",
+      //           }}
+      //           onClick={() => toast.dismiss(toastId)} // Close the toast when cancel is clicked
+      //         >
+      //           Cancel
+      //         </button>
+      //       </div>
+      //     </div>,
+      //     {
+      //       position: "top-center",
+      //       autoClose: false, // Prevents auto-closing
+      //       closeOnClick: false,
+      //       closeButton: false,
+      //     }
+      //   );
+      //  // Stop execution until user makes a choice
+      //  return;
+      // } 
+       if (!result.success && result.requireConfirmation) {
+        // Show confirmation popup
+        const userConfirmed = window.confirm(result.message);
+        if (!userConfirmed) return; // Stop if user cancels
+  
+        // User confirmed, so submit as a new entry
+        const newEntryResponse = await fetch("https://reach-backend.vercel.app/survey/addSurveyData", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ ...formData, isNewEntry: true }), // Now backend will handle this flag
+        });
+  
+        const newEntryResult = await newEntryResponse.json();
+        toast.success(newEntryResult.message);
+      }
       else {
         toast.success(result.message);
       }
