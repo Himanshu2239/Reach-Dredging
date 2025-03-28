@@ -29,7 +29,71 @@ const SurveyWorkLogReport = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+
+  
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // Validation
+  //   const { date, dredger, shift, forward, width, depth, dyke, block } = formData;
+  //   if (
+  //     !date ||
+  //     dredger === "Select dredger type" ||
+  //     shift === "Select shift" ||
+  //     !forward ||
+  //     !width ||
+  //     !depth ||
+  //     block === "Select block"
+  //   ) {
+  //     toast.error("Please fill in all fields before submitting.");
+  //     return;
+  //   }
+    
+  //   const token = localStorage.getItem("accessToken")
+
+  //   if(!token){
+  //     toast.error('Authorization failed')
+  //     return;
+  //   }
+    
+  //   // console.log("token", token);
+
+  //   try {
+  //     // Submit data to backend
+  //     const response = await fetch("https://reach-backend.vercel.app/survey/addSurveyData", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Authorization": `Bearer ${token}`
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       toast.success("Survey work log submitted successfully!");
+  //       // Reset form
+  //       setFormData({
+  //         date: "",
+  //         dredger: "Select dredger type",
+  //         shift: "Select shift",
+  //         forward: "",
+  //         width: "",
+  //         depth: "",
+  //         dyke: "Dyke 1",
+  //         block: "Select block",
+  //       });
+  //     } else {
+  //       const errorData = await response.json();
+  //       toast.error(`Failed to submit: ${errorData.message}`);
+  //     }
+  //   } catch (error) {
+  //     toast.error("An error occurred while submitting the report.");
+  //   }
+  // };
+
+
+    const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation
@@ -41,49 +105,120 @@ const SurveyWorkLogReport = () => {
       !forward ||
       !width ||
       !depth ||
+      dyke === "Select dyke" ||
       block === "Select block"
     ) {
       toast.error("Please fill in all fields before submitting.");
       return;
     }
-    
-    const token = localStorage.getItem("accessToken")
 
-    if(!token){
-      toast.error('Authorization failed')
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      toast.error("Authorization failed");
       return;
     }
-    
-    // console.log("token", token);
 
     try {
-      // Submit data to backend
-      const response = await fetch("https://reach-backend.vercel.app/survey/addSurveyData", {
+      // First, check if a duplicate exists
+      const checkResponse = await fetch("https://reach-backend.vercel.app/survey/addSurveyData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        toast.success("Survey work log submitted successfully!");
-        // Reset form
-        setFormData({
-          date: "",
-          dredger: "Select dredger type",
-          shift: "Select shift",
-          forward: "",
-          width: "",
-          depth: "",
-          dyke: "Dyke 1",
-          block: "Select block",
-        });
-      } else {
-        const errorData = await response.json();
-        toast.error(`Failed to submit: ${errorData.message}`);
+      const result = await checkResponse.json();
+
+      if (!result.success && result.requireConfirmation) {
+        // Show toast confirmation instead of window.confirm
+      const toastId =  toast.info(
+          <div>
+            <p>{result.message}</p>
+            <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+              <button
+                style={{
+                  padding: "5px 10px",
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+                onClick={async () => {
+                  // User confirmed, so submit as a new entry
+                  const newEntryResponse = await fetch(
+                    "https://reach-backend.vercel.app/survey/addSurveyData",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                      },
+                      body: JSON.stringify({ ...formData, isNewEntry: true }),
+                    }
+                  );
+
+                  const newEntryResult = await newEntryResponse.json();
+                  toast.dismiss(toastId); // Close the toast
+                  toast.success(newEntryResult.message);
+                  setFormData({
+                    date: "",
+                    dredger: "Select dredger type",
+                    shift: "Select shift",
+                    forward: "",
+                    width: "",
+                    depth: "",
+                    dyke: "Select dyke",
+                    block: "Select block",
+                  });
+                }}
+              >
+                OK
+              </button>
+
+              <button
+                style={{
+                  padding: "5px 10px",
+                  backgroundColor: "#dc3545",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+                onClick={() => toast.dismiss(toastId)} // Close the toast when cancel is clicked
+              >
+                Cancel
+              </button>
+            </div>
+          </div>,
+          {
+            position: "top-center",
+            autoClose: false, // Prevents auto-closing
+            closeOnClick: false,
+            closeButton: false,
+          }
+        );
+       // Stop execution until user makes a choice
+       return;
       }
+      else {
+        toast.success(result.message);
+      }
+
+      // Reset form after successful submission
+      setFormData({
+        date: "",
+        dredger: "Select dredger type",
+        shift: "Select shift",
+        forward: "",
+        width: "",
+        depth: "",
+        dyke: "Select dyke",
+        block: "Select block",
+      });
+
     } catch (error) {
       toast.error("An error occurred while submitting the report.");
     }
